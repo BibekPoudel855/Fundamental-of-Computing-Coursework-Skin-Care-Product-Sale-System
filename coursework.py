@@ -1,9 +1,18 @@
+# function which read the products from the text file
 def  readProductsFromFile() :
     """
     This function which read the products from the text file and returns the list of products
     """
     print("----------------------------------------------------")
     print("Reading Products from file")
+
+# function which generate invoices
+def generateInvoice() :
+    """
+    This function is used to generate invoice for the products sold
+    """
+    print("----------------------------------------------------")
+    print("Generating Invoice")
 
 
 # function which shows the available products in the store
@@ -13,7 +22,9 @@ def showProducts() :
     first code will read data then it will print the data in a formatted
     """
     print("----------------------------------------------------")
-    print("Showing Products")
+    print("Showing available products")
+    print("Product No.  Product Name        Compant       Price   Stock     Country")
+    print("----------------------------------------------------")
 
 
 # function which is used to restock products
