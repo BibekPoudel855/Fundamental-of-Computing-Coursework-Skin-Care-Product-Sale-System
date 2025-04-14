@@ -1,3 +1,11 @@
+def  readProductsFromFile() :
+    """
+    This function which read the products from the text file and returns the list of products
+    """
+    print("----------------------------------------------------")
+    print("Reading Products from file")
+
+
 # function which shows the available products in the store
 def showProducts() :
     """
@@ -6,6 +14,7 @@ def showProducts() :
     """
     print("----------------------------------------------------")
     print("Showing Products")
+
 
 # function which is used to restock products
 def restockProducts() :
@@ -32,6 +41,8 @@ all the operation of the system will started from this function
 Like showing available products, selling products, restocking products and exiting the system
 """
 def main() :
+    # calling readProductsFromFile function to read the products from the file which returns the list of products
+    allProducts = readProductsFromFile()
     while True :
         # printing the welcome message and options for the user
         print("----------------------------------------------------")
