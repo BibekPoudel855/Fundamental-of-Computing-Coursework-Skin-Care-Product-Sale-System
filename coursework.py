@@ -1,5 +1,6 @@
 # function which read the products from the text file
 def  read_products_from_file() :
+    
     """
     This function which read the products from the text file and returns the list of products
     """
