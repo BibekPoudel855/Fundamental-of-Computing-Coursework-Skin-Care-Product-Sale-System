@@ -1,0 +1,75 @@
+Step 1 : Start 
+
+Step 2 : Read products from file "product.txt" store it in  Products = list of dictionary
+
+Step 3 : Display welcome message & main menue:
+           1. Show Available Products
+           2. Process Sale
+           3. Restock Product
+           4. Exit
+
+Step 4 : Input choice from user
+           Step 4.1 : If input != integer then display error and go to Step 3
+           Step 4.2 : If input is an integer, go to Step 5
+
+step 5 : if input == 1 then
+            go to step 6
+         otherwise if input == 2 then
+            go to step 7
+         otherwise if input == 3 then
+            go to step 8
+         otherwise if input == 4 then
+            go to step 9
+         otherwise
+            go to step 10
+
+step 6 : 
+        step 6.1 : Display product with ID, name, price, no of free items and stock in table
+        step 6.2 : go to step 3
+
+step 7:
+    step 7.1 : Input customer name
+    step 7.2 : goto step 6
+    step 7.3 : Input product ID
+    step 7.4 : If not product id found, then
+                  display "Invalid Product ID"
+                  goto step 7.3
+    step 7.5 : Input quantity to sell
+    step 7.6 : If quantity < 0 then
+                  display "Invalid quantity"
+                  goto step 7.5
+    step 7.8 : If quantity + free items > stock then
+                  display "Not enough stock"
+                  goto step 7.3
+    step 7.9 : Update product updated stock 
+    step 7.10: Generate sales invoice to folder "invoices"
+    step 7.11: Update product data in products.txt file from updated stock
+    step 7.12: goto step 3
+
+
+    step 8:
+        step 8.1 : Input supplier name
+        step 8.3 : Input product ID
+        step 8.4 : If not product found then
+                    display "Invalid Product ID"
+                    goto step 8.3
+        step 8.5 : Input quantity to restock
+        step 8.6 : If quantity < 0 then
+                    display "Invalid quantity"
+                    goto step 8.5
+        step 8.7 : Input cost price
+        step 8.8 : If cost price < 0 then
+                    display "Invalid cost price"
+                    goto step 8.7
+        step 8.9 : Update price & stock of product
+        step 8.10: Update cost price in products.txt file
+        step 8.11: Generate and save restock invoice to folder "invoices"
+        step 8.12: goto step 3
+
+step 9 : Display "Thank you"
+         go to step 11
+
+step 10 : Display "Invalid option! Please choose between 1 to 4 only"
+         go to step 3
+
+step 11 : Stop

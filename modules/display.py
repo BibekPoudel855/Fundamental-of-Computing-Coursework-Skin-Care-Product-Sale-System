@@ -8,7 +8,6 @@ def display_table_header():
     print(f"{"Product ID":^15}{"Product Name" :^20}{"Company":^20}{"Price":^15}{"Stock":^15}{"Country":^15}")
     print_horizintal_line_bold(50)
 
-    
 ################################################################################
 def display_table_body(all_products_list):
     """
