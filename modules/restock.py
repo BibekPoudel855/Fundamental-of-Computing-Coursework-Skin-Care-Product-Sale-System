@@ -78,8 +78,8 @@ def restock_products(products) :
             append_restocked_item(restocked_item, target_product, new_price, restock_qty)
             
     
-        except ValueError:
-            print("❌ Please enter a valid ID.")
+        except :
+            print("❌ Something went wrong.")
             continue
     if restocked_item:
          # writing the updated products to file

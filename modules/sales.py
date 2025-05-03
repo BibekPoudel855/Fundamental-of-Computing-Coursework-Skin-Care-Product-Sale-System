@@ -15,6 +15,9 @@ def append_sold_item(cart, target_product, selling_qty):
         "free": selling_qty // 3,
         "total_amount_sold_exclude_free_items": (target_product["price"]) * selling_qty
     })
+    #printing details of the sold product
+    print(f"✅ Sold {selling_qty} Units {target_product['name']} & Given {selling_qty // 3} for free)")
+
 ################################################################################
 def update_product(target_product, total_qty_after_free):
     """
@@ -45,7 +48,7 @@ def sell_products(products) :
             """
             product_id = user_input_int("📦 Enter product ID or enter <0 to finish sale> : ")
             if product_id == 0:
-                # if user enter 0 then we break the loop and exit
+            # if user enter 0 then we break the loop and exit
                 break
             """extracting the product from the list based on the product id given by user
             if entered invalid product id then print error msg and continue the loop"""
@@ -67,17 +70,15 @@ def sell_products(products) :
             if total_qty_after_free > target_product["stock"]:
                 print(f"❌ Not Sufficient Stock. Only {target_product['stock']} available")
                 continue
-            #printing details of the sold product
-            print(f"✅ Sold {selling_qty} Units {target_product['name']} & Given {selling_qty // 3} for free)")
-        
+
             # Update stock after selling
             update_product(target_product, total_qty_after_free)
 
             # appending sold item to the cart
             append_sold_item(cart, target_product, selling_qty)
 
-        except ValueError:
-            print("❌ Invalid input, Enter number only.")
+        except :
+            print("❌ Something went wrong. Please try again.")
             continue
     if cart:
         # if cart is not empty then we call generate_invoice function

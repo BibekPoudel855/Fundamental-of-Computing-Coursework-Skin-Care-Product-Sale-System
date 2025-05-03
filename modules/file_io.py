@@ -43,9 +43,9 @@ def read_products_from_file():
         print("----------------------------------------------------")
         print("❌ < File Not Found >")
         return []    
-    except Exception:
+    except :
         print("----------------------------------------------------")
-        print("❌ < Something went wrong in reading file >", Exception )
+        print("❌ < Something went wrong in reading file >")
         return []
     # returning the list of products
     return products
@@ -90,7 +90,7 @@ def generate_invoice(cart, name, mode):
     # setting the filename based on mode  
     filename = f"data/invoices/{file_name}/{name.strip().replace(' ', '_')}_{date_time_str}.txt"
     # Calculate total
-    grand_total = 0
+    total_before_vat = 0
     try :
         file = open(filename, "w")
         file.write("========= We Care SKIN CARE ========\n")
@@ -105,22 +105,22 @@ def generate_invoice(cart, name, mode):
 
         file.write("-" * 70 + "\n")
 
-        grand_total = 0
+        total_before_vat = 0
         for item in cart:
             if mode == "sale":
                 total = item["total_amount_sold_exclude_free_items"]
-                grand_total += total
+                total_before_vat += total
                 file.write(f"{item['id']:<5} {item['name']:<20} {item['price']:<8} {item['quantity']:<6} {item['free']:<6} {total:<10}\n")
             elif mode == "restock":
                 total = item["amount"] 
-                grand_total += total
+                total_before_vat += total
                 file.write(f"{item['id']:<5} {item['name']:<20} {item['company']:<10} {item['price']:<8} {item['quantity']:<6} {total:<10}\n")
     
         file.write("-" * 70 + "\n")
-        file.write(f"Grand Total: Rs {grand_total}\n")
+        file.write(f"Grand Total: Rs {total_before_vat}\n")
         file.write("! Thank you\n")
         file.close()
         # printing the invoice filename
         print(f"📄 Invoice saved in: {filename}")
-    except Exception as e:
-        print("❌ Something went wrong in invoice:", e)
+    except :
+        print("❌ Something went wrong in invoice:")

@@ -1,4 +1,3 @@
-from modules.file_io import read_products_from_file
 ############################################################
 # function which is used to print horizontal line
 def print_horizintal_line_small(length=60):
@@ -21,6 +20,10 @@ def user_input_int(prompt):
     while True:
         try:
             value = int(input(prompt))
+            # check if value is less than 0 or not
+            if value < 0:
+                print("❌ Number must be positive.")
+                continue
             return value
         except ValueError:
             print("❌ Please enter a valid integer.")
@@ -33,6 +36,10 @@ def user_input_float(prompt):
     while True:
         try:
             value = float(input(prompt))
+            # check if value is less than 0 or not
+            if value < 0:
+                print("❌ Number must be positive.")
+                continue
             return value
         except ValueError:
             print("❌ Please enter a valid float number.")
