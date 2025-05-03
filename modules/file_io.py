@@ -1,4 +1,5 @@
 from datetime import datetime as dt
+from modules.utils import print_horizintal_line_small
 ################################################################################
 # function which read the products from the text file
 def read_products_from_file():
@@ -116,8 +117,11 @@ def generate_invoice(cart, name, mode):
                 total_before_vat += total
                 file.write(f"{item['id']:<5} {item['name']:<20} {item['company']:<10} {item['price']:<8} {item['quantity']:<6} {total:<10}\n")
     
-        file.write("-" * 70 + "\n")
-        file.write(f"Grand Total: Rs {total_before_vat}\n")
+        print_horizintal_line_small(70)
+        file.write(f"{'Total Before Vat:':>60} Rs {total_before_vat:>.2f}\n")
+        file.write(f"{'VAT (13%):':>60} Rs {total_before_vat * 0.13:>.2f}\n")
+        file.write(f"{'Grand Total:':>60} Rs {total_before_vat + total_before_vat * 0.13:>.2f}\n")
+        print_horizintal_line_small(70)
         file.write("! Thank you\n")
         file.close()
         # printing the invoice filename

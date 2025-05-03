@@ -1,4 +1,4 @@
-1,Vitamin C Serum, Garnier,300.0,43, France
-2,Skin Cleanser, Cetaphil,200.0,44, Switzerland
-3,Sunscreen, Aqualogica,200.0,28, India
-4,Niacinamide Serum, Dermaco,500.0,27, India
+1,Vitamin C Serum, Garnier,300.0,10, France
+2,Skin Cleanser, Cetaphil,200.0,36, Switzerland
+3,Sunscreen, Aqualogica,200.0,16, India
+4,Niacinamide Serum, Dermaco,500.0,12, India
