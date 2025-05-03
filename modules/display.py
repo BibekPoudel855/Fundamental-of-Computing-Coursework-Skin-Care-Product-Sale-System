@@ -1,3 +1,21 @@
+from modules.utils import print_horizintal_line_bold,print_horizintal_line_small
+################################################################################
+def display_table_header():
+    """
+    This function is used to display the table header for the products
+    """
+    print_horizintal_line_bold(50)
+    print(f"{"Product ID":^15}{"Product Name" :^20}{"Company":^20}{"Price":^15}{"Stock":^15}{"Country":^15}")
+    print_horizintal_line_bold(50)
+
+    
+################################################################################
+def display_table_body(all_products_list):
+    """
+    This function is used to display the table body for the products
+    """
+    for product in all_products_list:
+        print(f"{(product['id']):^15}{product['name']:^20}{product['company']:^20}{str(product['price']):^15}{str(product['stock']):^15}{product['country']:^20}")
 ################################################################################
 # function which shows the available products in the store
 def show_products(all_products_list) :
@@ -7,9 +25,8 @@ def show_products(all_products_list) :
     """
     if len(all_products_list)==0:
         print("No products available")
-        return 0
-    print("-"*50)
-    print(f"{"Product ID":^15}{"Product Name" :^20}{"Company":^20}{"Price":^15}{"Stock":^15}{"Country":^15}")
-    print("--------------------------------------------------------------------------------")
-    for product in all_products_list:
-        print(f"{(product['id']):^15}{product['name']:^20}{product['company']:^20}{str(product['price']*2):^15}{str(product['stock']):^15}{product['country']:^20}")
+        return 
+    # calling function to display table header & body
+    display_table_header()
+    display_table_body(all_products_list)
+    

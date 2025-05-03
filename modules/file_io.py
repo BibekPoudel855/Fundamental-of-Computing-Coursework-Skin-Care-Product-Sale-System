@@ -26,7 +26,8 @@ def read_products_from_file():
                     "id": int(product[0]),
                     "name": product[1],
                     "company": product[2],
-                    "price": float(product[3]),
+                    "cost_price": float(product[3]),
+                    "price": float(product[3])*2,
                     "stock": int(product[4]),
                     "country": product[5]
                 }
@@ -40,11 +41,11 @@ def read_products_from_file():
 
     except FileNotFoundError:
         print("----------------------------------------------------")
-        print("< File Not Found >")
+        print("❌ < File Not Found >")
         return []    
     except Exception:
         print("----------------------------------------------------")
-        print("< Something went wrong in reading file >", Exception )
+        print("❌ < Something went wrong in reading file >", Exception )
         return []
     # returning the list of products
     return products
@@ -56,7 +57,7 @@ def write_products_to_file(products):
         for product in products:
             # converting dictionary to string and writing to file
             # we convert because without converting to string it will give error because we are concating to string
-            line = str(product['id']) + "," + product['name'] + "," + product['company'] + "," + str(product['price']) + "," + str(product['stock']) + "," + product['country'] + "\n"
+            line = str(product['id']) + "," + product['name'] + "," + product['company'] + "," + str(product['cost_price']) + "," + str(product['stock']) + "," + product['country'] + "\n"
             file.write(line)
         file.close()
         print("✅ Products updated to file.")
@@ -94,7 +95,7 @@ def generate_invoice(cart, name, mode):
         file = open(filename, "w")
         file.write("========= We Care SKIN CARE ========\n")
         file.write(f"{name_category} Name: {name}\n")
-        file.write(f"Date: {date.day}-{date.month}-{date.year} {date.hour}:{date.minute}:{date.second}\n")
+        file.write(f"Date: {date.year}-{date.month}-{date.day} {date.hour}:{date.minute}:{date.second}\n")
         file.write("-" * 70 + "\n")
 
         if mode == "sale":
@@ -109,17 +110,17 @@ def generate_invoice(cart, name, mode):
             if mode == "sale":
                 total = item["total_amount_sold_exclude_free_items"]
                 grand_total += total
-                file.write(f"{item['id']:<5} {item['name']:<20} {(item['price']*2):<8} {item['quantity']:<6} {item['free']:<6} {(total*2):<10}\n")
+                file.write(f"{item['id']:<5} {item['name']:<20} {item['price']:<8} {item['quantity']:<6} {item['free']:<6} {total:<10}\n")
             elif mode == "restock":
                 total = item["amount"] 
                 grand_total += total
-                file.write(f"{item['id']:<5} {item['name']:<20} {item['price']:<8} {item['quantity']:<6} {'-':<6} {total:<10}\n")
+                file.write(f"{item['id']:<5} {item['name']:<20} {item['company']:<10} {item['price']:<8} {item['quantity']:<6} {total:<10}\n")
     
         file.write("-" * 70 + "\n")
-        file.write(f"Grand Total: Rs {grand_total*2}\n")
+        file.write(f"Grand Total: Rs {grand_total}\n")
         file.write("! Thank you\n")
         file.close()
         # printing the invoice filename
-        print(f"📄 Invoice in: {filename}")
-    except:
-        print("❌ Something went wrong in invoice")
+        print(f"📄 Invoice saved in: {filename}")
+    except Exception as e:
+        print("❌ Something went wrong in invoice:", e)

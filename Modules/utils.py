@@ -1,15 +1,55 @@
-def get_valid_int(prompt, error_msg="Invalid input. Please enter a number."):
+from modules.file_io import read_products_from_file
+############################################################
+# function which is used to print horizontal line
+def print_horizintal_line_small(length=60):
+    """
+    function which print horizontal line 
+    """
+    print("-" * length)
+
+def print_horizintal_line_bold(length=60):
+    """
+    function which print horizontal line 
+    """
+    print("=" * length)
+############################################################
+# function which is take int input from user
+def user_input_int(prompt):
+    """
+    function which takes input from user and check if it is int or not
+    """
     while True:
         try:
-            return int(input(prompt))
+            value = int(input(prompt))
+            return value
         except ValueError:
-            print(error_msg)
+            print("❌ Please enter a valid integer.")
+############################################################
+# function which is take float input from user
+def user_input_float(prompt):
+    """
+    function which takes input from user and check if it is float or not
+    """
+    while True:
+        try:
+            value = float(input(prompt))
+            return value
+        except ValueError:
+            print("❌ Please enter a valid float number.")
+############################################################
+# function which is take string input from user
+def user_input_string(prompt):
+    """
+    function which takes input from user and check if it is string or not
+    """
+    while True:
+        value = input(prompt)
+        if value.strip() == "":
+            print("❌ Please enter a valid string.")
+        else:
+            #strip remove spaces 
+            return value.strip()
+    
 
-def find_product_by_id(products, product_id):
-    for product in products:
-        if product["id"] == product_id:
-            return product
-    return None
+    
 
-def is_positive_number(n):
-    return isinstance(n, int) and n > 0
