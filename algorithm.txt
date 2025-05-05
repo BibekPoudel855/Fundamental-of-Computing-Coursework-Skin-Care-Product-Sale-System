@@ -1,3 +1,4 @@
+Algorithm WeCare Skin Care System
 Step 1 : Start 
 
 Step 2 : Read products from file "product.txt" store it in  Products = list of dictionary
@@ -47,7 +48,7 @@ step 7:
     step 7.12: goto step 3
 
 
-    step 8:
+step 8:
         step 8.1 : Input supplier name
         step 8.3 : Input product ID
         step 8.4 : If not product found then
@@ -67,9 +68,9 @@ step 7:
         step 8.12: goto step 3
 
 step 9 : Display "Thank you"
-         go to step 11
+    go to step 11
 
 step 10 : Display "Invalid option! Please choose between 1 to 4 only"
-         go to step 3
+    go to step 3
 
 step 11 : Stop
