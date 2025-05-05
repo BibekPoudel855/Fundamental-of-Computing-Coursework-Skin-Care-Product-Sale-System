@@ -51,11 +51,7 @@ def restock_products(products) :
             if product_id == 0:
                 break
             # checking if product id is valid or not
-            target_product = None
-            for product in products:
-                if product["id"] == product_id:
-                    target_product = product
-                    break
+            target_product = check_product_id_valid(product_id, products)
             # checking if the product id is in the list products or not
             if not target_product:
                 print("❌ Enter correct product id.")

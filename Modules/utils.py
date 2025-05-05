@@ -1,4 +1,5 @@
 ############################################################
+# functions for print lines 
 # function which is used to print horizontal line
 def print_horizintal_line_small(length=60):
     """
@@ -11,6 +12,8 @@ def print_horizintal_line_bold(length=60):
     function which print horizontal line 
     """
     print("=" * length)
+
+# functions for take input from user
 ############################################################
 # function which is take int input from user
 def user_input_int(prompt):
@@ -58,5 +61,22 @@ def user_input_string(prompt):
             return value.strip()
     
 
-    
+# functions for validation of data
+############################################################
+# function which is used to check if the product is in stock or not
+def check_product_in_stock(selling_qty, product):
+    """
+    function which is used to check if the product is in stock or not
+    """
+    if selling_qty > product["stock"]:
+        print(f"❌ Sorry, we don't have enough {product['name']} in stock.")
+        return False
+    return True
 
+##############################################################
+# function which is used to check if the product id is valid or not
+def check_product_id_valid(product_id, products):
+    for product in products:
+        if product["id"] == product_id:
+            return product
+    return None

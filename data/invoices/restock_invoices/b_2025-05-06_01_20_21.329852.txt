@@ -1,10 +1,12 @@
 ========= We Care SKIN CARE ========
-Supplier Name: sabun
-Date: 2025-5-3 15:42:34
+Supplier Name: b
+Date: 2025-5-6 1:20:21
 ----------------------------------------------------------------------
 ID    Product              Company    Price    Qty    Amount    
 ----------------------------------------------------------------------
-1     Vitamin C Serum       Garnier   300.0    30     9000.0    
+2     Skin Cleanser         Cetaphil  20.0     20     400.0     
+                                           Total Before Vat: Rs 400.00
+                                                  VAT (13%): Rs 52.00
+                                                Grand Total: Rs 452.00
 ----------------------------------------------------------------------
-Grand Total: Rs 9000.0
 ! Thank you

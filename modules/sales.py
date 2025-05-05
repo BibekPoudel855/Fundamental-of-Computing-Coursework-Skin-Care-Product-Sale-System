@@ -25,6 +25,27 @@ def update_product(target_product, total_qty_after_free):
     """
     target_product["stock"] -= total_qty_after_free
 
+
+# function which check if product is in stock or not
+def check_product_in_stock(total_qty, target_product):
+    stock = target_product["stock"]
+    if total_qty > stock:
+        print(f"❌ Not Sufficient Stock. Only {stock} available for {target_product['name']}")
+        return False
+    return True
+
+
+#function which is used to calculate the total quantity of product after selling
+def calculate_total_qty(selling_qty):
+    """
+    we keep this function because later we can add new logic
+    like if user buy 3 product total in two times then we can handle to give 1 product free
+    and other logic
+    """
+    # calculating total stock with free items 
+    total_qty_after_free = selling_qty + (selling_qty // 3)
+    return total_qty_after_free
+
 ################################################################################
 # fuction which is used to sell products
 def sell_products(products) :
@@ -52,23 +73,18 @@ def sell_products(products) :
                 break
             """extracting the product from the list based on the product id given by user
             if entered invalid product id then print error msg and continue the loop"""
-            target_product = None
-            for product in products:
-                if product["id"] == product_id:
-                    target_product = product
-                    break
+            target_product = check_product_id_valid(product_id, products)
             # checking if the product id is in the list products or not
             if not target_product:
-                print("❌ Enter correct product id.")
+                print(f"❌ Product ID {product_id} not found.")
                 continue
             # asking user to enter the quantity of product they want to sell
-            
             selling_qty = user_input_int(f"📦 How many {target_product['name']} you want to sell: ")
             # calculating total stock with free items 
-            total_qty_after_free = selling_qty + (selling_qty // 3)
+            total_qty_after_free = calculate_total_qty(selling_qty)
+
             # checking if the stock is available or not
-            if total_qty_after_free > target_product["stock"]:
-                print(f"❌ Not Sufficient Stock. Only {target_product['stock']} available")
+            if not check_product_in_stock(total_qty_after_free, target_product):
                 continue
 
             # Update stock after selling
@@ -77,8 +93,8 @@ def sell_products(products) :
             # appending sold item to the cart
             append_sold_item(cart, target_product, selling_qty)
 
-        except :
-            print("❌ Something went wrong. Please try again.")
+        except Exception as e:
+            print(f"❌ Something went wrong: {e}. Please try again.")
             continue
     if cart:
         # if cart is not empty then we call generate_invoice function

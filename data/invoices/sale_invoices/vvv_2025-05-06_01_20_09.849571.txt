@@ -1,10 +1,12 @@
 ========= We Care SKIN CARE ========
-Customer Name: bibek
-Date: 2025-5-3 17:14:44
+Customer Name: vvv
+Date: 2025-5-6 1:20:9
 ----------------------------------------------------------------------
 ID    Product              Price    Qty    Free   Total     
 ----------------------------------------------------------------------
-1     Vitamin C Serum      600.0    20     6      12000.0   
+2     Skin Cleanser        400.0    20     6      8000.0    
+                                           Total Before Vat: Rs 8000.00
+                                                  VAT (13%): Rs 1040.00
+                                                Grand Total: Rs 9040.00
 ----------------------------------------------------------------------
-Grand Total: Rs 12000.0
 ! Thank you

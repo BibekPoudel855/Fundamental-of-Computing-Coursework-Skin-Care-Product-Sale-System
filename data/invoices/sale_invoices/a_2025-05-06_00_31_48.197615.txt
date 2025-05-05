@@ -1,13 +1,13 @@
 ========= We Care SKIN CARE ========
-Customer Name: zzz
-Date: 2025-5-3 19:50:21
+Customer Name: a
+Date: 2025-5-6 0:31:48
 ----------------------------------------------------------------------
 ID    Product              Price    Qty    Free   Total     
 ----------------------------------------------------------------------
 1     Vitamin C Serum      600.0    1      0      600.0     
 1     Vitamin C Serum      600.0    1      0      600.0     
-1     Vitamin C Serum      600.0    1      0      600.0     
-                                           Total Before Vat: Rs 1800.00
-                                                  VAT (13%): Rs 234.00
-                                                Grand Total: Rs 2034.00
+                                           Total Before Vat: Rs 1200.00
+                                                  VAT (13%): Rs 156.00
+                                                Grand Total: Rs 1356.00
+----------------------------------------------------------------------
 ! Thank you
