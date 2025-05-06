@@ -3,31 +3,40 @@ from modules.utils import print_horizintal_line_small
 ################################################################################
 # function who extract products from file lines and store in list of dictionary
 def append_product_to_list_dictn(file, products):
+            product_id = 0
             # list of lines
             file_lines = file.readlines()  
             # reading the file line by  and storing it in a list
             for line in file_lines:
                 # stripping method removes whitespaces, \n and \t from the string
                 product = line.strip()
+                # checking if product is empty if it is empty then it is consider as line is empty so skip
+                if not product:
+                    continue
                 # splitting the string into list
                 product = product.split(",")
+                # skipping line if it not correct
+                if len(product) != 5:
+                    continue
             # this try catch help to avoid error when empty space or line found in file
                 try :
+                    #increase product id by one
+                    product_id += 1
                 # creating dictionary and sorting in list products
                     product_dictionary = {
-                        "id": int(product[0]),
-                        "name": product[1],
-                        "company": product[2],
-                        "cost_price": float(product[3]),
-                        "price": float(product[3])*2,
-                        "stock": int(product[4]),
-                        "country": product[5]
+                        "id": (product_id),
+                        "name": product[0],
+                        "company": product[1],
+                        "cost_price": float(product[2]),
+                        "price": float(product[2])*2,
+                        "stock": int(product[3]),
+                        "country": product[4]
                     }
                     # appending disctionary to list products
                     products.append(product_dictionary)
-                except :
-                    # we keep pass keyword because it allows us to keep block empty mean help to skip the error
-                    pass
+                except ValueError:
+                # if error occurs then print the error and continue to next line
+                    continue
 # function which read the products from the text file
 def read_products_from_file():
     """
@@ -65,7 +74,7 @@ def write_products_to_file(products):
         for product in products:
             # converting dictionary data to string and writing to file
             # we convert because without converting to string it will give error because we are concating to string
-            line = str(product['id']) + "," + product['name'] + "," + product['company'] + "," + str(product['cost_price']) + "," + str(product['stock']) + "," + product['country'] + "\n"
+            line = product['name'] + "," + product['company'] + "," + str(product['cost_price']) + "," + str(product['stock']) + "," + product['country'] + "\n"
             file.write(line)
         file.close()
         print("✅ Products updated to file.")
@@ -148,7 +157,7 @@ def write_invoice_totals(file, total_before_vat):
     file.write(f"{'VAT (13%):':>60} Rs {vat:>.2f}\n")
     file.write(f"{'Grand Total:':>60} Rs {grand_total:>.2f}\n")
     file.write("-" * 70 + "\n")
-    file.write("! Thank you\n")
+    file.write("🙏 Thank you\n")
 
 
 ################################################################################
@@ -182,3 +191,18 @@ def generate_invoice(cart, name, mode):
     except Exception as e:
         print(f"❌ Something went wrong in invoice: {e}")
 
+
+################################################################################
+def add_new_product_to_file(product_name, product_company, product_price, product_qty, product_country):
+    """
+    Function to add new product to the file.
+    """
+    try:
+        file = open("data/products.txt", "a")
+        file.write(f"{product_name},{product_company},{product_price},{product_qty},{product_country}\n")
+        file.close()
+        print_horizintal_line_small()
+        print("✅ Product added successfully.")
+
+    except Exception as e:
+        print(f"❌ Something went wrong: {e}")

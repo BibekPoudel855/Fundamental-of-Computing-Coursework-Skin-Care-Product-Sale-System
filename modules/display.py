@@ -4,9 +4,9 @@ def display_table_header():
     """
     This function is used to display the table header for the products
     """
-    print_horizintal_line_bold(50)
-    print(f"{"Product ID":^15}{"Product Name" :^20}{"Company":^20}{"Price":^15}{"Stock":^15}{"Country":^15}")
-    print_horizintal_line_bold(50)
+    print_horizintal_line_bold(100)
+    print(f"{"Product ID":^15}{"Product Name" :^20}{"Company":^20}{"Selling Price":^15}{"Stock":^15}{"Country":^15}")
+    print_horizintal_line_bold(100)
 
 ################################################################################
 def display_table_body(all_products_list):

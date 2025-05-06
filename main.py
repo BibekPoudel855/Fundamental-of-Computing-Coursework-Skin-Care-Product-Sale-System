@@ -7,6 +7,7 @@ from modules.file_io import read_products_from_file
 from modules.restock import restock_products
 from modules.sales import sell_products
 from modules.utils import *
+from modules.add_new_products import add_new_products
 
 def display_welcome_message():
     """
@@ -27,7 +28,8 @@ def show_choices_message():
     print("1 -> Show Products 🧴")
     print("2 -> Sell Products 🛒")
     print("3 -> Restock Products 🔄")
-    print("4 -> Exit System 🛑")
+    print("4 -> Add New Product ➕")
+    print("5 -> Exit System 🛑")
     print_horizintal_line_small()
 
 def handle_choice(choice, all_products_list):
@@ -39,15 +41,18 @@ def handle_choice(choice, all_products_list):
         # if the user input is 3 then call restockProducts function
     elif choice == 3:
         restock_products(all_products_list)
-        # if the user input is 4 then we exit the system
+        # if the user input is 4 then we call addNewProducts function
     elif choice == 4:
+        add_new_products()
+        # if the user input is 5 then we exit the system
+    elif choice == 5:
         print_horizintal_line_small(60)
         print("🙏 Thank you")
-        return 4
-        # if the user input not betn 1 to 4 then we print error message
+        return 5
+        # if the user input not betn 1 to 5 then we print error message
     else :
         print_horizintal_line_small(60)
-        print("❌ < Invalid input, please enter number between 1 to 4 >")
+        print("❌ < Invalid input, please enter number between 1 to 5 >")  # updated to reflect correct range
         return 0
 ################################################################################
 def main() :
@@ -80,7 +85,7 @@ def main() :
             continue
         # checking the user input  and calling function based on choice variable
         # if the user input is 1 then we call showProducts function to show available products in the store
-        if handle_choice(choice, all_products_list) == 4:
+        if handle_choice(choice, all_products_list) == 5:
             break
 
 # calling main function to start the program

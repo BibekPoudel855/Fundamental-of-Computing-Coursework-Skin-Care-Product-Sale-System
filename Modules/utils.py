@@ -80,3 +80,9 @@ def check_product_id_valid(product_id, products):
         if product["id"] == product_id:
             return product
     return None
+
+# function which check if input is == 0  
+def check_input_zero(value):
+    if value == 0:
+        return True
+    return False

@@ -59,21 +59,20 @@ def restock_products(products) :
 
             # input qty to restock product
             restock_qty = user_input_int(f"📦 Enter the quantity to restock {target_product['name']} : ")
-            if restock_qty <= 0:
-                print("❌ Please enter a valid quantity.")
+            if(check_input_zero(restock_qty)):
+                print("❌ Quantity cannot be zero.")
                 continue
             # input new price of product 
             new_price = user_input_float(f"💵 Enter new price for {target_product['name']} <current cost price: {target_product['cost_price']}>: ")
-            if new_price <= 0:
-                print("❌ Price must be positive.")
+            
+            if(check_input_zero(new_price)):
+                print("❌ Price cannot be zero.")
                 continue
 
             # function which update the product in the list of products
             update_product(target_product, new_price, restock_qty)
             # appending the restocked item to the cart
             append_restocked_item(restocked_item, target_product, new_price, restock_qty)
-            
-    
         except :
             print("❌ Something went wrong.")
             continue

@@ -80,6 +80,10 @@ def sell_products(products) :
                 continue
             # asking user to enter the quantity of product they want to sell
             selling_qty = user_input_int(f"📦 How many {target_product['name']} you want to sell: ")
+            # checking if the quantity == 0
+            if(check_input_zero(selling_qty)):
+                print("❌ Quantity must be greater than 0.")
+                continue
             # calculating total stock with free items 
             total_qty_after_free = calculate_total_qty(selling_qty)
 
