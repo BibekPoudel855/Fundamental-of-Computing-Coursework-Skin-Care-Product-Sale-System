@@ -159,8 +159,9 @@ def generate_invoice(cart, name, mode):
     with filename as <customer_name>_<cleaned-datetime>.txt
     """
     # Getting current date object and date_time_str in string format
-    date_time_str, date = get_date_time_str()
+    date_time_str, date = get_date_time_str()  # tuple unpacking
     # Getting the filename & name_category based on mode
+    #tuple unpacking
     file_name, name_category = assign_file_category_name(mode, date_time_str, name)
 
     try:
