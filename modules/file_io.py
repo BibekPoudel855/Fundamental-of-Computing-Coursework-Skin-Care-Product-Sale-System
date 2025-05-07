@@ -202,7 +202,6 @@ def add_new_product_to_file(product_name, product_company, product_price, produc
         file.write(f"{product_name},{product_company},{product_price},{product_qty},{product_country}\n")
         file.close()
         print_horizintal_line_small()
-        print("✅ Product added successfully.")
 
     except Exception as e:
         print(f"❌ Something went wrong: {e}")

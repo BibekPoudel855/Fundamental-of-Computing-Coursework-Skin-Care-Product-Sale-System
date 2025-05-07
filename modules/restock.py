@@ -38,7 +38,8 @@ def restock_products(products) :
     """
     This function is used to restock products in the store
     """
-    supplier_name = user_input_string("🏢 Enter the supplier name : ")
+    supplier_name = user_input_string("🏢 Enter the supplier name : ", True)
+    
     #cart of restocked items
     restocked_item=[]
     while True :
@@ -58,16 +59,9 @@ def restock_products(products) :
                 continue
 
             # input qty to restock product
-            restock_qty = user_input_int(f"📦 Enter the quantity to restock {target_product['name']} : ")
-            if(check_input_zero(restock_qty)):
-                print("❌ Quantity cannot be zero.")
-                continue
+            restock_qty = user_input_int(f"📦 Enter the quantity to restock {target_product['name']} : ", True)
             # input new price of product 
-            new_price = user_input_float(f"💵 Enter new price for {target_product['name']} <current cost price: {target_product['cost_price']}>: ")
-            
-            if(check_input_zero(new_price)):
-                print("❌ Price cannot be zero.")
-                continue
+            new_price = user_input_float(f"💵 Enter new price for {target_product['name']} <current cost price: {target_product['cost_price']}>: ", True)
 
             # function which update the product in the list of products
             update_product(target_product, new_price, restock_qty)

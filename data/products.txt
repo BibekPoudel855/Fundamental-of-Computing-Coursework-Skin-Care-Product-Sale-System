@@ -1,7 +1,7 @@
-Vitamin C Serum, Garnier,300.1,28, France
+Vitamin C Serum, Garnier,300.0,15, France
 Skin Cleanser, Cetaphil,20.0,351, Switzerland
 Sunscreen, Aqualogica,200.0,4, India
 Niacinamide Serum, Dermaco,501.0,200, India
-Sysaclic Acid,Dermaco,850.0,200,India
-Vasline,Vas,20.0,300,Nepal
-XTZ,pkr,200.0,200,npr
+Salicylic Acid Serum,Dermaco,850.0,200,Nepal
+Moisturizer, Neutrogena,500.0,100, USA
+Face Wash, CaraVe,101.0,70, USA
