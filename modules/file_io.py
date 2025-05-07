@@ -116,24 +116,34 @@ def assign_file_category_name(mode, date_time_str, name):
 
 ################################################################################
 # function write invoice header
-def write_invoice_header(file, name_category, name, date, mode):
-
-    file.write("========= We Care SKIN CARE ========\n")
-    file.write(f"{name_category} Name: {name}\n")
-    file.write(f"Date: {date.year}-{date.month}-{date.day} {date.hour}:{date.minute}:{date.second}\n")
-    file.write("-" * 70 + "\n")
+def write_invoice_header(file, name_category, name, date, mode, width=60):
+    file.write("=" * width + "\n")
+    file.write(f"{'========= We Care SKIN CARE =========' :^{width}}\n")
+    file.write(f"{'Pokhara-1, Bagar, Kaski, Nepal':^{width}}\n")
+    file.write(f"{'Phone: 061-412014':^{width}}\n")
+    file.write(f"{'Email: wecare@gmai.com' :^{width}}\n")
+    file.write(f"{'Website: www.wecareskincare.com' :^{width}}\n")
+    file.write("="* width + "\n")
+    file.write(f"{'Invoice':^{width}}\n")
+    file.write("=" * width + "\n")
+    file.write("\n")
+    # file.write(f"{name_category} Name: {name}\n")
+    # file.write(f"Date: {date.year}-{date.month}-{date.day} {date.hour}:{date.minute}:{date.second}\n")
+    file.write(f"{name_category} Name: {name:<15} {'Date:':>8} {date.year}-{date.month}-{date.day} {date.hour}:{date.minute}:{date.second}\n")
+    file.write("\n")
+    file.write("=" * width + "\n")
 
     if mode == "sale":
         file.write(f"{'ID':<5} {'Product':<20} {'Price':<8} {'Qty':<6} {'Free':<6} {'Total':<10}\n")
     else:
         file.write(f"{'ID':<5} {'Product':<20} {'Company':<10} {'Price':<8} {'Qty':<6} {'Amount':<10}\n")
 
-    file.write("-" * 70 + "\n")
+    file.write("-" * width + "\n")
 
 
 ################################################################################
 # function write invoice items
-def write_invoice_items(file, cart, mode):
+def write_invoice_items(file, cart, mode, width=60):
     """
     Writes the items in the cart to the invoice file and calculates the total.
     """
@@ -147,20 +157,19 @@ def write_invoice_items(file, cart, mode):
             total = item["amount"]
             total_before_vat += total
             file.write(f"{item['id']:<5} {item['name']:<20} {item['company']:<10} {item['price']:<8} {item['quantity']:<6} {total:<10}\n")
+    file.write("-" * width + "\n")
     return total_before_vat
 
 
 ################################################################################
 # function write invoice totals
-def write_invoice_totals(file, total_before_vat):
+def write_invoice_totals(file, total_before_vat, width=60):
     vat = total_before_vat * 0.13
     grand_total = total_before_vat + vat
-    file.write(f"{'Total Before Vat:':>60} Rs {total_before_vat:>.2f}\n")
-    file.write(f"{'VAT (13%):':>60} Rs {vat:>.2f}\n")
-    file.write(f"{'Grand Total:':>60} Rs {grand_total:>.2f}\n")
-    file.write("-" * 70 + "\n")
-    file.write("🙏 Thank you\n")
-
+    file.write(f"{'Total Before Vat:':>{width-15}} Rs {total_before_vat:>.2f}\n")
+    file.write(f"{'VAT (13%):':>{width-15}} Rs {vat:>.2f}\n")
+    file.write(f"{'Grand Total:':>{width-15}} Rs {grand_total:>.2f}\n")
+    file.write("=" * width + "\n")
 
 ################################################################################
 # main generate_invoice function
@@ -169,6 +178,8 @@ def generate_invoice(cart, name, mode):
     Generates a simple invoice and saves it in data/invoices/
     with filename as <customer_name>_<cleaned-datetime>.txt
     """
+    # total width for invoice table line 
+    width = 62
     # Getting current date object and date_time_str in string format
     date_time_str, date = get_date_time_str()  # tuple unpacking
     # Getting the filename & name_category based on mode
@@ -179,13 +190,13 @@ def generate_invoice(cart, name, mode):
         # Open the file for writing
         with open(file_name, "w") as file:
             # write header
-            write_invoice_header(file, name_category, name, date, mode)
+            write_invoice_header(file, name_category, name, date, mode, width)
 
             # write items and gives total before vat
-            total_before_vat = write_invoice_items(file, cart, mode)
+            total_before_vat = write_invoice_items(file, cart, mode, width)
 
             # write the totals
-            write_invoice_totals(file, total_before_vat)
+            write_invoice_totals(file, total_before_vat, width)
 
         # Print the invoice filename
         print_horizintal_line_small(60)
