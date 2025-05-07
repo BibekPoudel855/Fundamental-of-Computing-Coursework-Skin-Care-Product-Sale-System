@@ -17,6 +17,7 @@ def append_restocked_item(restocked_item, target_product, new_price, restock_qty
         "amount": restock_qty * new_price
     })
     # printing success message
+    print_horizintal_line_small(60)
     print(f"✅ Restocked {restock_qty} units of {target_product['name']} at Rs. {new_price}.")
 
 ################################################################################
@@ -38,6 +39,7 @@ def restock_products(products) :
     """
     This function is used to restock products in the store
     """
+    print_horizintal_line_small(60)
     supplier_name = user_input_string("🏢 Enter the supplier name : ", True)
     
     #cart of restocked items
@@ -47,6 +49,7 @@ def restock_products(products) :
         show_products(products)
         try:
         # taking input from user to restock product
+            print_horizintal_line_small(60)
             product_id = user_input_int("📦 Enter the product id to restock <0 to stop restock> : ")
             # if user enter 0 then break the loop
             if product_id == 0:
@@ -55,12 +58,15 @@ def restock_products(products) :
             target_product = check_product_id_valid(product_id, products)
             # checking if the product id is in the list products or not
             if not target_product:
+                print_horizintal_line_small(60)
                 print("❌ Enter correct product id.")
                 continue
 
             # input qty to restock product
+            print_horizintal_line_small(60)
             restock_qty = user_input_int(f"📦 Enter the quantity to restock {target_product['name']} : ", True)
             # input new price of product 
+            print_horizintal_line_small(60)
             new_price = user_input_float(f"💵 Enter new price for {target_product['name']} <current cost price: {target_product['cost_price']}>: ", True)
 
             # function which update the product in the list of products
@@ -68,6 +74,7 @@ def restock_products(products) :
             # appending the restocked item to the cart
             append_restocked_item(restocked_item, target_product, new_price, restock_qty)
         except :
+            print_horizintal_line_small(60)
             print("❌ Something went wrong.")
             continue
     if restocked_item:

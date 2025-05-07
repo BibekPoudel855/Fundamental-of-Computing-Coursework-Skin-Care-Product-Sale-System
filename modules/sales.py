@@ -16,6 +16,7 @@ def append_sold_item(cart, target_product, selling_qty):
         "total_amount_sold_exclude_free_items": (target_product["price"]) * selling_qty
     })
     #printing details of the sold product
+    print_horizintal_line_small(60)
     print(f"✅ Sold {selling_qty} Units {target_product['name']} & Given {selling_qty // 3} for free)")
 
 ################################################################################
@@ -30,6 +31,7 @@ def update_product(target_product, total_qty_after_free):
 def check_product_in_stock(total_qty, target_product):
     stock = target_product["stock"]
     if total_qty > stock:
+        print_horizintal_line_small(60)
         print(f"❌ Not Sufficient Stock. Only {stock} available for {target_product['name']}")
         return False
     return True
@@ -58,6 +60,7 @@ def sell_products(products) :
     cart = []
     while True:
         # displaying products on stock
+        print_horizintal_line_small(60)
         print("Available Products: ")
         # shows products before selling 
         show_products(products)
@@ -67,6 +70,7 @@ def sell_products(products) :
             taking input from the user to which product to sell
             if the user enter 0 then we break the loop and exit
             """
+            print_horizintal_line_small(60)
             product_id = user_input_int("📦 Enter product ID or enter <0 to finish sale> : ")
             if product_id == 0:
             # if user enter 0 then we break the loop and exit
@@ -76,9 +80,11 @@ def sell_products(products) :
             target_product = check_product_id_valid(product_id, products)
             # checking if the product id is in the list products or not
             if not target_product:
+                print_horizintal_line_small(60)
                 print(f"❌ Product ID {product_id} not found.")
                 continue
             # asking user to enter the quantity of product they want to sell
+            print_horizintal_line_small(60)
             selling_qty = user_input_int(f"📦 How many {target_product['name']} you want to sell: ", True)
             # calculating total stock with free items 
             total_qty_after_free = calculate_total_qty(selling_qty)
@@ -94,6 +100,7 @@ def sell_products(products) :
             append_sold_item(cart, target_product, selling_qty)
 
         except Exception as e:
+            print_horizintal_line_small(60)
             print(f"❌ Something went wrong: {e}. Please try again.")
             continue
     if cart:

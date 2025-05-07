@@ -54,7 +54,7 @@ def read_products_from_file():
         file.close()
 
     except FileNotFoundError:
-        print_horizintal_line_small()
+        print_horizintal_line_small(60)
         print("❌ < File Not Found >")
         return []    
     except :
@@ -77,8 +77,10 @@ def write_products_to_file(products):
             line = product['name'] + "," + product['company'] + "," + str(product['cost_price']) + "," + str(product['stock']) + "," + product['country'] + "\n"
             file.write(line)
         file.close()
+        print_horizintal_line_small(60)
         print("✅ Products updated to file.")
     except :
+        print_horizintal_line_small(60)
         print("❌ Can't write file.")
 
 
@@ -186,9 +188,11 @@ def generate_invoice(cart, name, mode):
             write_invoice_totals(file, total_before_vat)
 
         # Print the invoice filename
+        print_horizintal_line_small(60)
         print(f"📄 Invoice saved in: {file_name}")
 
     except Exception as e:
+        print_horizintal_line_small()
         print(f"❌ Something went wrong in invoice: {e}")
 
 
@@ -204,4 +208,5 @@ def add_new_product_to_file(product_name, product_company, product_price, produc
         print_horizintal_line_small()
 
     except Exception as e:
+        print_horizintal_line_small()
         print(f"❌ Something went wrong: {e}")

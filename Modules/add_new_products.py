@@ -10,14 +10,19 @@ def add_new_products(all_products_list):
     """
     while True: 
         # taking user input 
+        print_horizintal_line_small(60)
         product_name = user_input_string("🛍️  Enter product name to add or ↩️  0 to exit : ")
         # if user press 0 then exit
         if(product_name == "0"):
             print("↩️ Exiting... ")
             break
+        print_horizintal_line_small(60)
         product_company = user_input_string("🏢 Enter product company: ")
+        print_horizintal_line_small(60)
         product_price = user_input_float("💰 Enter product price: ", True)
+        print_horizintal_line_small(60)
         product_qty = user_input_int("📦 Enter product quantity: ", True)
+        print_horizintal_line_small(60)
         product_country = user_input_string("🌍 Enter product country: ")
         # update file with new product
         add_new_product_to_file(product_name, product_company, product_price, product_qty, product_country)

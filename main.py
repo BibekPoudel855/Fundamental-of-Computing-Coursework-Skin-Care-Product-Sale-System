@@ -15,7 +15,7 @@ def display_welcome_message():
     This function is used to display the welcome message for the user
     """
     print_horizintal_line_bold(60)
-    print("🎉🎉🎉 Welcome to We Care Skin Care Store 🎉🎉🎉")
+    print(f"🎉🎉🎉 Welcome to We Care Skin Care Store 🎉🎉🎉")
     print_horizintal_line_bold(60)
 
 # function to print greeting message at last thank you 
@@ -28,7 +28,7 @@ def show_choices_message():
     """
     This function is used to show the choices for the user to choose from
     """
-    print_horizintal_line_small()
+    print_horizintal_line_small(60)
     print("💡 Please press number in your keyboard for given operation")
     print_horizintal_line_small()
     print("1 -> Show Products 🧴")
@@ -52,7 +52,6 @@ def handle_choice(choice, all_products_list):
         add_new_products(all_products_list)
         # if the user input is 5 then we exit the system
     elif choice == 5:
-        print_horizintal_line_small(60)
         print_exit_message()
         return 5
         # if the user input not betn 1 to 5 then we print error message
@@ -89,9 +88,7 @@ def main() :
         we are using try and except to make a sure correct input is given by the user
         if the user gives invalid input then we print error then ask them to enter again"""
 
-        print_horizintal_line_small(60)
         choice = user_input_int("Please enter a number : ")  
-        print_horizintal_line_small(60)
         # checking the user input  and calling function based on choice variable
         # if the user input is 1 then we call showProducts function to show available products in the store
         if handle_choice(choice, all_products_list) == 5:
