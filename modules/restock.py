@@ -40,7 +40,7 @@ def restock_products(products) :
     This function is used to restock products in the store
     """
     print_horizintal_line_small(60)
-    supplier_name = user_input_string("🏢 Enter the supplier name : ", True)
+    supplier_name = user_input_string("🏢 Enter the supplier name : ", True, True)
     
     #cart of restocked items
     restocked_item=[]
@@ -50,7 +50,7 @@ def restock_products(products) :
         try:
         # taking input from user to restock product
             print_horizintal_line_small(60)
-            product_id = user_input_int("📦 Enter the product id to restock <0 to stop restock> : ")
+            product_id = user_input_int("📦 Enter the product id to restock <0 to stop restock ↩️ > : ")
             # if user enter 0 then break the loop
             if product_id == 0:
                 break

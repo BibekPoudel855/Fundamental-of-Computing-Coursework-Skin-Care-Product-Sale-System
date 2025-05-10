@@ -56,7 +56,7 @@ def sell_products(products) :
     stock after sales success
     """
     #ask for customer name 
-    customer_name = user_input_string("🧑‍🤝‍🧑Enter customer name: ", True)
+    customer_name = user_input_string("🧑‍🤝‍🧑Enter customer name: ", True, True)
     cart = []
     while True:
         # displaying products on stock
@@ -71,7 +71,7 @@ def sell_products(products) :
             if the user enter 0 then we break the loop and exit
             """
             print_horizintal_line_small(60)
-            product_id = user_input_int("📦 Enter product ID or enter <0 to finish sale> : ")
+            product_id = user_input_int("📦 Enter product ID or enter <0 to finish sale ↩️ > : ")
             if product_id == 0:
             # if user enter 0 then we break the loop and exit
                 break

@@ -1,4 +1,5 @@
-"""
+"""4
+
 importing modules from modules folder
 which includes various functions to handle features of this system
 """
@@ -15,7 +16,7 @@ def display_welcome_message():
     This function is used to display the welcome message for the user
     """
     print_horizintal_line_bold(60)
-    print(f"🎉🎉🎉 Welcome to We Care Skin Care Store 🎉🎉🎉")
+    print(f"🎉🎉🎉 Welcome to We Care Suppliers 🎉🎉🎉")
     print_horizintal_line_bold(60)
 
 # function to print greeting message at last thank you 

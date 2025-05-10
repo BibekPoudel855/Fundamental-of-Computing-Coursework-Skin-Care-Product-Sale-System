@@ -36,7 +36,7 @@ def user_input_int(prompt, exclue_zero=False):
 
 ############################################################
 # function which is take float input from user
-def user_input_float(prompt, exclue_zero=False):
+def user_input_float(prompt, exclude_zero=False):
     """
     function which takes input from user and check if it is float or not
     """
@@ -44,7 +44,7 @@ def user_input_float(prompt, exclue_zero=False):
         try:
             value = float(input(prompt))
             # check if value is less than 0 or not
-            if exclue_zero:
+            if exclude_zero:
                 if value <= 0:
                     print("❌ Number must be greater than zero.")
                     continue
@@ -57,16 +57,30 @@ def user_input_float(prompt, exclue_zero=False):
 
 ############################################################
 # function which is take string input from user
-def user_input_string(prompt, validate_person_name=False):
+def user_input_string(prompt, validate_person_name=False, validate_alpha = False, allow_zero = False):
     while True:
         value = input(prompt).strip()
         if value == "":
-            print("❌ Plsease enter valid string.")
+            print("❌ Please enter valid string.")
             continue
+        if allow_zero:
+            if value == "0":
+                return value
         if validate_person_name:
             # check there is space between the name or not
             if len(value.split(" ")) < 2:
                 print("❌ Please Enter full name.")
+                continue
+
+        if validate_alpha:
+            split_name = value.split(" ")
+            is_alpha = True
+            for i in range(len(split_name)):
+                if not split_name[i].isalpha():
+                    is_alpha = False
+                    print("❌ Enter alphanumeric name.")
+                    break
+            if not is_alpha:
                 continue
         return value
 # functions for validation of data
