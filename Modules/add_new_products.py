@@ -6,7 +6,7 @@ from modules.display import show_products
 # function which add new products to the file
 def add_new_products(all_products_list):
     """
-    Function which add new products to the file.
+    function which add new products to the file.
     """
     while True: 
         # taking user input 
@@ -16,12 +16,16 @@ def add_new_products(all_products_list):
         if product_name == "0":
             break
         print_horizintal_line_small(60)
+        # input product company
         product_company = user_input_string("🏢 Enter product company: ", False, True)
         print_horizintal_line_small(60)
+        # input product price
         product_price = user_input_float("💰 Enter product price: ", True)
         print_horizintal_line_small(60)
+        # input product quantity
         product_qty = user_input_int("📦 Enter product quantity: ", True)
         print_horizintal_line_small(60)
+        # input product country
         product_country = user_input_string("🌍 Enter product country: ", False, True)
         # update file with new product
         add_new_product_to_file(product_name, product_company, product_price, product_qty, product_country)

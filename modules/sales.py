@@ -22,13 +22,15 @@ def append_sold_item(cart, target_product, selling_qty):
 ################################################################################
 def update_product(target_product, total_qty_after_free):
     """
-    updating the stock of the product quantity
+    updating the stock of the product quantity in list of products
+    because targer procudt hold reference of the products list
     """
     target_product["stock"] -= total_qty_after_free
 
 
 # function which check if product is in stock or not
 def check_product_in_stock(total_qty, target_product):
+    # checking if the product is in stock or not
     stock = target_product["stock"]
     if total_qty > stock:
         print_horizintal_line_small(60)
@@ -56,7 +58,7 @@ def sell_products(products) :
     stock after sales success
     """
     #ask for customer name 
-    customer_name = user_input_string("🧑‍🤝‍🧑Enter customer name: ", True, True)
+    customer_name = user_input_string("🧑‍🤝‍🧑Enter customer full name: ", True, True)
     cart = []
     while True:
         # displaying products on stock

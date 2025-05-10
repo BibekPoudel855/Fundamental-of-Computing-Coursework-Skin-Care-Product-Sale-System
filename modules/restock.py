@@ -40,7 +40,7 @@ def restock_products(products) :
     This function is used to restock products in the store
     """
     print_horizintal_line_small(60)
-    supplier_name = user_input_string("🏢 Enter the supplier name : ", True, True)
+    supplier_name = user_input_string("🏢 Enter the supplier full name : ", True, True)
     
     #cart of restocked items
     restocked_item=[]

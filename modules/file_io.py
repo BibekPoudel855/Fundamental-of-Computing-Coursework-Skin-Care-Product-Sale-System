@@ -52,7 +52,7 @@ def read_products_from_file():
         append_product_to_list_dictn(file, products)
         # closing file because to prevent memory leak and prevent unintentional changes to the file
         file.close()
-
+    
     except FileNotFoundError:
         print_horizintal_line_small(60)
         print("❌ < File Not Found >")
@@ -70,12 +70,15 @@ def read_products_from_file():
 # function which writes updated products to the text file
 def write_products_to_file(products):
     try:
+        # opening the file in write mode & it will  create new file if not exist
+        # if file exist then it will override the file
         file = open("data/products.txt", "w")
         for product in products:
             # converting dictionary data to string and writing to file
             # we convert because without converting to string it will give error because we are concating to string
             line = product['name'] + "," + product['company'] + "," + str(product['cost_price']) + "," + str(product['stock']) + "," + product['country'] + "\n"
             file.write(line)
+        # closing the file to improve performance from small and low devices
         file.close()
         print_horizintal_line_small(60)
         print("✅ Products updated to file.")
@@ -117,6 +120,11 @@ def assign_file_category_name(mode, date_time_str, name):
 ################################################################################
 # function write invoice header
 def write_invoice_header(file, name_category, name, date, mode, width=60):
+    """
+    function to write invoice header section
+    file.write method is used to write the data in file
+    we have displayd detail of shop and customer name in header
+    """
     file.write("=" * width + "\n")
     file.write(f"{'========= We Care SKIN CARE =========' :^{width}}\n")
     file.write(f"{'Pokhara-1, Bagar, Kaski, Nepal':^{width}}\n")
@@ -127,8 +135,6 @@ def write_invoice_header(file, name_category, name, date, mode, width=60):
     file.write(f"{'Invoice':^{width}}\n")
     file.write("=" * width + "\n")
     file.write("\n")
-    # file.write(f"{name_category} Name: {name}\n")
-    # file.write(f"Date: {date.year}-{date.month}-{date.day} {date.hour}:{date.minute}:{date.second}\n")
     file.write(f"{name_category} Name: {name:<15} {'Date:':>8} {date.year}-{date.month}-{date.day} {date.hour}:{date.minute}:{date.second}\n")
     file.write("\n")
     file.write("=" * width + "\n")
@@ -145,7 +151,9 @@ def write_invoice_header(file, name_category, name, date, mode, width=60):
 # function write invoice items
 def write_invoice_items(file, cart, mode, width=60):
     """
-    Writes the items in the cart to the invoice file and calculates the total.
+    function to write items from cart to the invoice file.
+    it write data based on mode like sale or restock
+    calculated toal before vat amount
     """
     total_before_vat = 0
     for item in cart:
@@ -164,6 +172,9 @@ def write_invoice_items(file, cart, mode, width=60):
 ################################################################################
 # function write invoice totals
 def write_invoice_totals(file, total_before_vat, width=60):
+    """
+    function to write total amount before vat and vat amount in invoice file
+    """
     vat = total_before_vat * 0.13
     grand_total = total_before_vat + vat
     file.write(f"{'Total Before Vat:':>{width-15}} Rs {total_before_vat:>.2f}\n")
@@ -210,9 +221,11 @@ def generate_invoice(cart, name, mode):
 ################################################################################
 def add_new_product_to_file(product_name, product_company, product_price, product_qty, product_country):
     """
-    Function to add new product to the file.
+    function to add new product to the file.
     """
     try:
+        # opening the file in append mode will not override and it will add new line
+        # if file not exist then it will create new file
         file = open("data/products.txt", "a")
         file.write(f"{product_name},{product_company},{product_price},{product_qty},{product_country}\n")
         file.close()
