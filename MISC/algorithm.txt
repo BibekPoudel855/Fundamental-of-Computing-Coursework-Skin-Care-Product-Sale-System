@@ -1,119 +1,109 @@
 Algorithm WeCare Skin Care System
+
 Step 1 : Start 
 
-Step 2 : Read products details from file "product.txt" store it in  Products = list of dictionaries
+Step 2 : Read products details from file "product.txt" store it in Products = list of dictionaries
+    Step 2.1 : If product list is empty then
+        display "Products list empty."
+        goto Step 10
+    otherwise
+        goto Step 3
 
 Step 3 : Display welcome message
 
 Step 4 : Display
-           1. Show Available Products
-           2. Process Sale
-           3. Restock Product
-           4. Add New Product
-           5. Exit
+            1. Show Available Products
+            2. Process Sale
+            3. Restock Product
+            4. Add New Product
+            5. Exit
 
-step 5 : Input choice from user
-         step 5.1 : if input is invalid then
-            display "Invalid input. Please enter a number between 1 and 5."
-            go to step 4
-         otherwise if input is valid then
-            go to step 6
+Step 5 : Input choice from user
+    Step 5.1 : if input is invalid then
+        display "Invalid input. Please enter a number between 1 and 5."
+        goto Step 4
+    otherwise if input is valid then
+        goto Step 6
 
-step 6 : if input == 1 then
-            go to step 7
-         otherwise if input == 2 then
-            go to step 8
-         otherwise if input == 3 then
-            go to step 9
-         otherwise if input == 4 then
-            go to step 10
-         otherwise if input == 5 then
-            go to step 12
-         otherwise
-            go to step 11
+Step 6 : if input == 1 then
+            goto Step 7
+        otherwise if input == 2 then
+            goto Step 8
+        otherwise if input == 3 then
+            goto Step 9
+        otherwise if input == 4 then
+            goto Step 10
+        otherwise if input == 5 then
+            goto Step 12
+        otherwise
+            goto Step 11
 
-Step 7: If the Products list == empty then
-            display "No products available."
-         Otherwise
-            display the product details like ID, name, selling price, stock, country in table.
-    Step 7.1: Go to Step 4
+Step 7 : display the product details like ID, name, selling price, stock, country in table.
+    Step 7.1 : goto Step 4
 
-step 8:
-   step 8.1 : Input customer name
-   step 8.2 : If customer name is invalid then
-                     display "Invalid customer name"
-                     goto step 8.1
-    step 8.3 : Display product details
-    step 8.4 : Input product ID
-    step 8.5 : If invalid product ID, then
-                  display "Invalid Product ID"
-                  goto step 8.4
-    step 8.6 : Input quantity to sell
-    Step 8.7 : Calculate total quantity after free = selling quantity + free items
-    step 8.8 : If Invalid quantity or total quantity > stock then
-                  display "Invalid quantity"
-                  goto step 8.6
-    step 8.9 : Update product data in Products list
-    step 8.10: Generate sales invoice and save in file
-    step 8.11: Update product data in products.txt file
-    step 8.12: goto step 4
+Step 8 :
+    Step 8.1 : Input customer name
+    Step 8.2 : If customer name is invalid then
+        goto Step 8.1
+    Step 8.3 : Display product details
+    Step 8.4 : Input product ID
+    Step 8.5 : If product ID == 0, then
+        goto Step 4
+    Step 8.6 : If invalid product ID, then
+        goto Step 8.4
+    Step 8.7 : Input quantity to sell
+    Step 8.8 : Calculate total quantity after free = selling quantity + free items
+    Step 8.9 : If total quantity > stock then
+        goto Step 8.3
+    Step 8.10 : Update product data in Products list
+    Step 8.11 : Generate sales invoice and save in file
+    Step 8.12 : Update product data in "products.txt" file
+    Step 8.13 : goto Step 8.4
 
+Step 9 :
+    Step 9.1 : Input supplier name
+    Step 9.2 : If supplier name is invalid then
+        goto Step 9.1
+    Step 9.3 : Display product details
+    Step 9.4 : Input product ID
+    Step 9.5 : If product ID == 0, then
+        goto Step 4
+    Step 9.6 : If invalid product id then
+        goto Step 9.4
+    Step 9.7 : Input quantity to restock
+    Step 9.8 : If invalid quantity then
+        goto Step 9.7
+    Step 9.9 : Input cost price
+    Step 9.10 : If invalid cost price then
+        goto Step 9.9
+    Step 9.11 : Update data of product in Products list
+    Step 9.12 : Update data in "products.txt" file
+    Step 9.13 : Generate invoice & save in file
+    Step 9.14 : goto Step 9.4
 
-step 9:
-        step 9.1 : Input supplier name
-        step 9.2 : If supplier name is invalid then
-                     display "Invalid supplier name"
-                     goto step 9.1
-        step 9.3 : Display product details
-        step 9.4 : Input product ID
-        step 9.5 : If invalid product id then
-                    display "Invalid Product ID"
-                    goto step 9.4
-        step 9.6 : Input quantity to restock
-        step 9.7 : If invalid quantity then
-                    display "Invalid quantity"
-                    goto step 9.6
-        step 9.8 : Input cost price
-        step 9.9 : If invalid cost price then
-                    display "Invalid cost price"
-                    goto step 9.8
-        step 9.10 : Update data of product in Products list
-        step 9.11 : Update data in products.txt file
-        step 9.12 : Generate & save restock in file
-        step 9.13 : goto step 4
+Step 10 : Input name of new product.
+    Step 10.2 : if name == 0 then
+        goto Step 4
+    Step 10.3 : if name is invalid then
+        goto Step 10.1
+    Step 10.4 : Input company of new product.
+    Step 10.5 : if company is invalid then
+        goto Step 10.4
+    Step 10.6 : Input cost price of new product.
+    Step 10.7 : if cost price is invalid then
+        goto Step 10.6
+    Step 10.8 : Input quantity of new product.
+    Step 10.9 : if quantity is invalid then
+        goto Step 10.8
+    Step 10.10 : Input the country of new product.
+    Step 10.11 : if country is invalid then
+        goto Step 10.10
+    Step 10.12 : Add new product details in Products list.
+    Step 10.13 : Update new product in file "products.txt".
+    Step 10.14 : goto Step 10
 
-
-Step 10: Add New Product:
-    Step 10.1: Input name of new product.
-      Step 10.2: if name is invalid then
-                    display "Invalid product name"
-                    goto step 10.1
-                  otherwise if name == 0 then 
-                  goto step 4
-                  otherwise 
-                  goto step 10.3
-    Step 10.3: Input company of new product.
-      Step 10.4: if company is invalid then
-                     display "Invalid company name"
-                     goto step 10.4
-    Step 10.5: Input cost price of new product.
-      Step 10.6: if cost price is invalid then
-                     display "Invalid cost price"
-                     goto step 10.5
-    Step 10.7: Input quantity of new product.
-      Step 10.8: if quantity is invalid then
-                     display "Invalid quantity"
-                     goto step 10.7
-    Step 10.9: Input the country of new product.
-      Step 10.10: if country is invalid then
-                     display "Invalid country"
-                     goto step 10.9
-    Step 10.11: Add new product details in Products list.
-    Step 10.12: Update new product in file "products.txt".
-    Step 10.13: Go to Step 4.
-
-Step 11: Display "Invalid option! Please enter a number between 1 to 5 only"
-         go to step 4
+Step 11 : Display "Invalid option! Please enter a number between 1 to 5 only"
+    goto Step 4
 
 Step 12 : Display "Thank you for using We Care Skin Care Store"
-         Step 12.1: Stop
+    Step 12.1 : Stop

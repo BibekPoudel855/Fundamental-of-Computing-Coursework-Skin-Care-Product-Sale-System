@@ -94,6 +94,5 @@ def main() :
         # if the user input is 1 then we call showProducts function to show available products in the store
         if handle_choice(choice, all_products_list) == 5:
             break
-
 # calling main function to start the program
 main()# entry point of the program
