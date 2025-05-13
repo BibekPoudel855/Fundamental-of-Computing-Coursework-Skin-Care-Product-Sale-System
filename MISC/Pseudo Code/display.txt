@@ -1,0 +1,24 @@
+IMPORT modules
+FUNCTION display_table_header
+    CALL print_horizontal_line_bold(120)
+    PRINT table header row with Product ID, Product Name, Company, Selling Price, Stock, Country
+    CALL print_horizintal_line_small(120)
+END FUNCTION
+
+FUNCTION display_table_body(all_products_list)
+    FOR each product IN all_products_list 
+        PRINT table row with product id, name, company, price, stock, country
+    END FOR
+END FUNCTION
+
+FUNCTION show_products(all_products_list)
+    IF LENGTH(all_products_list) == 0 THEN
+        PRINT "No products available in the store."
+        RETURN
+    END IF
+    CALL display_table_header
+    CALL display_table_body(all_products_list)
+    CALL print_horizintal_line_bold(120)
+END FUNCTION
+
+END

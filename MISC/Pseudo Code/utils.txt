@@ -1,0 +1,117 @@
+START
+
+IMPORT modules
+
+FUNCTION print_horizintal_line_small(length=60)
+    PRINT "-" * length
+END FUNCTION
+
+FUNCTION print_horizintal_line_bold(length=60)
+    PRINT "=" * length
+END FUNCTION
+
+FUNCTION user_input_int(prompt, exclude_zero=False)
+    WHILE TRUE
+        TRY
+            SET value = INPUT, prompt, INT
+            IF exclude_zero THEN
+                IF value <= 0 THEN
+                    PRINT "Number must be greater than zero."
+                    CONTINUE
+                END IF
+            ELSE
+                IF value < 0 THEN
+                    PRINT "Number can't be negative."
+                    CONTINUE
+                END IF
+            END IF
+            RETURN value
+        CATCH ValueError
+            PRINT "Please enter a valid integer."
+        END TRY
+    END WHILE
+END FUNCTION
+
+FUNCTION user_input_float(prompt, exclude_zero=False)
+    WHILE TRUE 
+        TRY
+            SET value = INPUT, prompt, FLOAT
+            IF exclude_zero THEN
+                IF value <= 0 THEN
+                    PRINT "Number must be greater than zero."
+                    CONTINUE
+                END IF
+            ELSE
+                IF value < 0 THEN
+                    PRINT "Number can't be negative."
+                    CONTINUE
+                END IF
+            END IF
+            RETURN value
+        CATCH ValueError
+            PRINT "Please enter a valid float number."
+        END TRY
+    END WHILE
+END FUNCTION
+
+FUNCTION user_input_string(prompt, validate_person_name=False, validate_alpha=False, allow_zero_exit=False)
+    WHILE TRUE
+        SET value = INPUT, prompt, STRING
+        IF value == "" THEN
+            PRINT "Please enter valid string."
+            CONTINUE
+        END IF
+        IF allow_zero_exit THEN
+            IF value == "0" THEN
+                RETURN value
+            END IF
+        END IF
+        IF validate_person_name THEN
+            IF LENGTH(value) < 2 THEN
+                PRINT "Please Enter full name."
+                CONTINUE
+            END IF
+        END IF
+        IF validate_alpha THEN
+            SET is_alpha = TRUE
+            FOR each word in splitted value by space
+                IF word is not alphabetic THEN
+                    is_alpha = FALSE
+                    PRINT "Enter alphabetic name."
+                    BREAK
+                END IF
+            END FOR
+            IF NOT is_alpha THEN
+                CONTINUE
+            END IF
+        END IF
+        RETURN value
+    END WHILE
+END FUNCTION
+
+FUNCTION check_product_in_stock(selling_qty, product)
+    IF selling_qty > product["stock"] THEN
+        PRINT "Sorry, we don't have enough", product["name"], "in stock."
+        RETURN FALSE
+    END IF
+    RETURN TRUE
+END FUNCTION
+
+FUNCTION check_product_id_valid(product_id, products)
+    FOR each product in products
+        IF product["id"] == product_id THEN
+            RETURN product
+        END IF
+    END FOR
+    RETURN NONE
+END FUNCTION
+
+FUNCTION check_input_zero(value)
+    IF value == 0 THEN
+        RETURN TRUE
+    ELSE
+        RETURN FALSE
+    END IF
+END FUNCTION
+
+END

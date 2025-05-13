@@ -1,0 +1,69 @@
+START
+
+IMPORT modules
+
+FUNCTION append_sold_item(cart, target_product, selling_qty)
+    ADD dictionary with id, name, company, price, quantity, free, total_amount_sold_exclude_free_items to cart
+    print_horizontal_line(60)
+    PRINT("Sold Successfully")
+END FUNCTION
+
+FUNCTION update_product(target_product, total_qty_after_free)
+    DECREASE target_product["stock"] by total_qty_after_free
+END FUNCTION
+
+FUNCTION check_product_in_stock(total_qty, target_product)
+    SET stock = target_product["stock"]
+    IF total_qty > stock THEN
+        print_horizontal_line_small(60)
+        PRINT("Not sufficient stock")
+        RETURN FALSE
+    END IF
+    RETURN TRUE
+END FUNCTION
+
+FUNCTION calculate_total_qty(selling_qty)
+    SET total_qty_after_free = selling_qty + selling_qty // 3
+    RETURN total_qty_after_free
+END FUNCTION
+
+FUNCTION sell_products(products)
+    SET customer_name = CALL user_input_string("Enter customer full name", TRUE, TRUE)
+    SET cart = empty list
+    WHILE TRUE
+        print_horizontal_line_small(60)
+        PRINT "Available Products:"
+        CALL show_products(products)
+        TRY
+            print_horizontal_line_small(60)
+            SET product_id = CALL user_input_int("Enter product ID or 0 to finish sale")
+            IF product_id == 0 THEN
+                BREAK
+            END IF
+            SET target_product = CALL check_product_id_valid(product_id, products)
+            IF target_product == NONE THEN
+                print_horizontal_line_small(60)
+                PRINT "Product ID not found."
+                CONTINUE
+            END IF
+            print_horizontal_line_small(60)
+            SET selling_qty = CALL user_input_int("How many to sell", TRUE)
+            SET total_qty_after_free = CALL calculate_total_qty(selling_qty)
+            IF NOT CALL check_product_in_stock(total_qty_after_free, target_product) THEN
+                CONTINUE
+            END IF
+            CALL update_product(target_product, total_qty_after_free)
+            CALL append_sold_item(cart, target_product, selling_qty)
+        CATCH Exception
+            print_horizontal_line_small(60)
+            PRINT "Something went wrong. Please try again."
+            CONTINUE
+        END TRY
+    END WHILE
+    IF LENGTH(cart) > 0 THEN
+        CALL write_products_to_file(products)
+        CALL generate_invoice(cart, customer_name, "sale")
+    END IF
+END FUNCTION
+
+END

@@ -1,0 +1,34 @@
+START
+
+IMPORT modules
+
+FUNCTION add_new_products(all_products_list)
+    WHILE TRUE
+        print_horizontal_line_small(60)
+        SET product_name = CALL user_input_string("Enter product name to add or 0 to exit", FALSE, TRUE, TRUE)
+        IF product_name == "0" THEN
+            BREAK
+        END IF
+
+        print_horizontal_line_small(60)
+        SET product_company = CALL user_input_string("Enter product company", FALSE, TRUE, TRUE)
+        print_horizontal_line_small(60)
+        SET product_price = CALL user_input_float("Enter product price", TRUE, TRUE)
+        print_horizontal_line_small(60)
+        SET product_qty = CALL user_input_int("Enter product quantity", TRUE, TRUE)
+        print_horizontal_line_small(60)
+        SET product_country = CALL user_input_string("Enter product country", FALSE, TRUE)
+
+        CALL add_new_product_to_file(product_name, product_company, product_price, product_qty, product_country)
+
+        APPEND dictionary with id, name, company, cost_price, price, stock, country to all_products_list
+
+        print_horizontal_line_small(60)
+        PRINT ("Successfully added")
+        print_horizontal_line_small(60)
+
+        CALL show_products(all_products_list)
+    END WHILE
+END FUNCTION
+
+END

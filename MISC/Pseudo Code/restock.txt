@@ -1,0 +1,57 @@
+IMPORT modules
+START
+
+FUNCTION append_restocked_item(restocked_item, target_product, new_price, restock_qty)
+    ADD dictionary with id, name, company, price, quantity, amount to restocked_item list
+    print_horizontal_line(60)
+    print("Restocked  Successfully")
+END FUNCTION
+
+FUNCTION update_product(target_product, new_price, restock_qty)
+    INCREASE target_product['stock'] by restock_qty
+    SET target_product['cost_price'] = new_price
+    SET target_product['price'] = new_price * 2
+END FUNCTION
+
+FUNCTION restock_products(products)
+    PRINT horizontal line(60)
+    SET supplier_name = CALL user_input_string("Enter the supplier full name", TRUE, TRUE)
+    SET restocked_item = empty list
+
+    WHILE TRUE
+        CALL show_products(products)
+        TRY
+            PRINT horizontal line(60)
+            SET product_id = CALL user_input_int("Enter the product id to restock <0 to stop restock>")
+            IF product_id == 0 THEN
+                BREAK
+            END IF
+
+            SET target_product = CALL check_product_id_valid(product_id, products)
+            IF target_product == NONE THEN
+                PRINT horizontal line(60)
+                PRINT "Enter correct product id."
+                CONTINUE
+            END IF
+
+            PRINT horizontal line(60)
+            SET restock_qty = CALL user_input_int("Enter the quantity to restock", TRUE, TRUE)
+            PRINT horizontal line(60)
+            SET new_price = CALL user_input_float("Enter new price for product", TRUE, TRUE)
+
+            CALL update_product(target_product, new_price, restock_qty)
+            CALL append_restocked_item(restocked_item, target_product, new_price, restock_qty)
+        CATCH Exception
+            PRINT horizontal line(60)
+            PRINT "Something went wrong."
+            CONTINUE
+        END TRY
+    END WHILE
+
+    IF LENGTH(restocked_item) > 0 THEN
+        CALL write_products_to_file(products)
+        CALL generate_invoice(restocked_item, supplier_name, "restock")
+    END IF
+END FUNCTION
+
+END

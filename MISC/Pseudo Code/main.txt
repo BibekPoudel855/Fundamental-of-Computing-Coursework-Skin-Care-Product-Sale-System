@@ -1,0 +1,72 @@
+START
+
+IMPORT modules
+
+FUNCTION display_welcome_message
+    print_horizintal_line_bold(60)
+    print("Welcome to We Care Store")
+    print_horizintal_line_bold(60)
+END FUNCTION
+
+FUNCTION print_exit_message
+    print_horizintal_line_bold(60)
+    print("Thank you for using We Care Store")
+    print_horizintal_line_bold(60)
+END FUNCTION
+
+FUNCTION show_choices_message
+    print_horizintal_line_small(60)
+    print("Please enter number for given operation")
+    print_horizintal_line_small(60)
+    print("1 -> Show Products")
+    print("2 -> Sell Products")
+    print("3 -> Restock Products")
+    print("4 -> Add New Products")
+    print("5 -> Exit")
+END FUNCTION
+
+FUNCTION handle_choice(choice, all_products_list)
+    IF choice == 1 THEN
+        CALL show_products(all_products_list)
+    ELSE IF choice == 2 THEN
+        CALL sell_products(all_products_list)
+    ELSE IF choice == 3 THEN
+        CALL restock_products(all_products_list)
+    ELSE IF choice == 4 THEN
+        CALL add_new_products(all_products_list)
+    ELSE IF choice == 5 THEN
+        CALL print_exit_message()
+        RETURN 5
+    ELSE
+        print_horizintal_line_small(60)
+        print("< Invalid input, please enter number between 1 to 5 >")
+        RETURN 0
+    END IF
+END FUNCTION
+
+FUNCTION main
+    SET all_products_list = CALL read_products_from_file
+    IF LENGTH(all_products_list) == 0 THEN
+        PRINT("No products available in file")
+        PRINT("Please add new products to the file")
+        CALL add_new_products(all_products_list)
+        IF LENGTH(all_products_list) == 0 THEN
+            CALL print_exit_message()
+            RETURN
+        END IF
+    END IF
+    CALL display_welcome_message
+    WHILE TRUE
+        CALL show_choices_message()
+        SET choice = CALL user_input_int("Please enter a number : ")
+        IF handle_choice(choice, all_products_list) == 5 THEN
+            BREAK
+        END IF
+    END WHILE
+END FUNCTION
+
+CALL main
+
+END
+
+

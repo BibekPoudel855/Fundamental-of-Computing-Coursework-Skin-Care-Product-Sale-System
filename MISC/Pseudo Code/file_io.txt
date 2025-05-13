@@ -1,0 +1,140 @@
+IMPORT modules & libraries
+FUNCTION append_product_to_list_dictn(file, products)
+    SET product_id = 0
+    SET file_lines = READ all lines from file
+    FOR each line IN file_lines
+        SET product = remove space from line
+        IF product is empty THEN
+            CONTINUE
+        END IF
+        SPLIT product by "," into list
+        IF LENGTH(product) != 5 THEN
+            CONTINUE
+        END IF
+        TRY
+            INCREMENT product_id by 1
+            CREATE product_dictionary with id, name, company, cost_price, price, stock, country
+            APPEND product_dictionary to products
+        CATCH ValueError
+            CONTINUE
+        END TRY
+    END FOR
+END FUNCTION
+
+FUNCTION read_products_from_file
+    SET products = empty list
+    TRY
+        OPEN "data/products.txt" file in read mode
+        CALL append_product_to_list_dictn(file, products)
+        CLOSE file
+    CATCH FileNotFoundError
+        CALL print_horizintal_line_small(60)
+        PRINT "File Not Found"
+        RETURN empty list
+    CATCH Exception
+        CALL print_horizintal_line_small()
+        PRINT "Something went wrong in reading file"
+        RETURN empty list
+    END TRY
+    RETURN products
+END FUNCTION
+
+FUNCTION write_products_to_file(products)
+    TRY
+        OPEN "data/products.txt" in write mode
+        FOR each product IN products
+            CONVERT product dictionary to string line
+            WRITE line to file
+        END FOR
+        CLOSE file
+        CALL print_horizintal_line_small(60)
+        PRINT "Products updated to file."
+    CATCH Exception
+        CALL print_horizintal_line_small(60)
+        PRINT "Can't write file."
+    END TRY
+END FUNCTION
+
+FUNCTION get_date_time_str
+    SET date = get current date and time
+    SET date_time_str = convert date to string, replace ":" and " " with "_"
+    RETURN date_time_str, date
+END FUNCTION
+
+FUNCTION assign_file_category_name(mode, date_time_str, name)
+    IF mode == "sale" THEN
+        SET main_file = "sale_invoices"
+        SET name_category = "Customer"
+    ELSE
+        SET main_file = "restock_invoices"
+        SET name_category = "Supplier"
+    END IF
+    SET file_name = "data/invoices/" + main_file + "/" + name & replace space with "_" + date_time_str + ".txt"
+    RETURN file_name, name_category
+END FUNCTION
+FUNCTION write_invoice_header(file, name_category, name, date, mode, width)
+    WRITE header with shop details
+    WRITE invoice title and customer/supplier name, date
+    IF mode == "sale" THEN
+        WRITE sale table header to file
+    ELSE
+        WRITE restock table header to file
+    END IF
+    WRITE - * width to file
+END FUNCTION
+
+FUNCTION write_invoice_items(file, cart, mode, width)
+    SET total_before_vat = 0
+    FOR each item IN cart DO
+        IF mode == "sale" THEN
+            SET total = item["total_amount_sold_exclude_free_items"]
+            INCREMENT total_before_vat by total
+            WRITE sale item row to file
+        ELSE IF mode == "restock" THEN
+            SET total = item["amount"]
+            INCREMENT total_before_vat by total
+            WRITE restock item row to file
+        END IF
+    END FOR
+    WRITE - * width to file
+    RETURN total_before_vat
+END FUNCTION
+
+FUNCTION write_invoice_totals(file, total_before_vat, width)
+    SET vat = total_before_vat * 0.13
+    SET grand_total = total_before_vat + vat
+    WRITE total before vat, vat, and grand total to file
+    WRITE - * width to file
+END FUNCTION
+
+FUNCTION generate_invoice(cart, name, mode)
+    SET width = 62
+    SET date_time_str, date = CALL get_date_time_str()
+    SET file_name, name_category = CALL assign_file_category_name(mode, date_time_str, name)
+    TRY
+        OPEN file_name in write mode
+        CALL write_invoice_header(file, name_category, name, date, mode, width)
+        SET total_before_vat = CALL write_invoice_items(file, cart, mode, width)
+        CALL write_invoice_totals(file, total_before_vat, width)
+        CLOSE file
+        CALL print_horizontal_line_small(60)
+        PRINT "Invoice saved in: ", file_name
+    CATCH Exception
+        CALL print_horizintal_line_small()
+        PRINT "Something went wrong in invoice"
+    END TRY
+END FUNCTION
+
+FUNCTION add_new_product_to_file(product_name, product_company, product_price, product_qty, product_country)
+    TRY
+        OPEN "data/products.txt" in append mode
+        WRITE product details to file
+        CLOSE file
+        CALL print_horizintal_line_small()
+    CATCH Exception
+        CALL print_horizintal_line_small()
+        PRINT "Something went wrong"
+    END TRY
+END FUNCTION
+
+END

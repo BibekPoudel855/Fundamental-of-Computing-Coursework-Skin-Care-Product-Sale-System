@@ -16,13 +16,13 @@ def display_welcome_message():
     This function is used to display the welcome message for the user
     """
     print_horizintal_line_bold(60)
-    print(f"🎉🎉🎉 Welcome to We Care Suppliers 🎉🎉🎉")
+    print(f"🎉🎉🎉 Welcome to We Care Store 🎉🎉🎉")
     print_horizintal_line_bold(60)
 
 # function to print greeting message at last thank you 
 def print_exit_message():
     print_horizintal_line_bold(60)
-    print("🙏 Thank you for using We Care Skin Care Store")
+    print("🙏 Thank you for using We Care Store")
     print_horizintal_line_bold(60)
 
 def show_choices_message():
@@ -30,13 +30,13 @@ def show_choices_message():
     This function is used to show the choices for the user to choose from
     """
     print_horizintal_line_small(60)
-    print("💡 Please press number in your keyboard for given operation")
+    print("💡 Please enter number for given operation")
     print_horizintal_line_small()
     print("1 -> Show Products 🧴")
     print("2 -> Sell Products 🛒")
     print("3 -> Restock Products 🔄")
     print("4 -> Add New Product ➕")
-    print("5 -> Exit System 🛑")
+    print("5 -> Exit 🛑")
     print_horizintal_line_small()
 
 def handle_choice(choice, all_products_list):
