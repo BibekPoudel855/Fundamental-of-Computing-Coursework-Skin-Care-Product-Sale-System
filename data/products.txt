@@ -1,9 +1,10 @@
-Vitamin C Serum, Garnier,300.0,292, France
-Skin Cleanser, Cetaphil,250.0,1420, Switzerland
-Sunscreen, Aqualogica,199.0,200, India
+Retinol Serum, The Ordinary,1200.0,100, USA
+Vitamin C Serum, Garnier,300.0,240, France
+Skin Cleanser, Cetaphil,250.0,1440, Switzerland
+Sunscreen, Aqualogica,199.0,160, India
 Niacinamide Serum, Dermaco,500.0,257, India
 Salicylic Acid Serum,Dermaco,850.0,195,Nepal
 Moisturizer, Neutrogena,500.0,100, USA
 Face Wash, CaraVe,101.0,70, USA
 Snail Mucin,Cosrx,800.0,200,Nepal
-Acne Scar,Nepal Skin Care,800.0,2000,Nepal
+Acne Scar,Nepal Skin Care,800.0,0,Nepal

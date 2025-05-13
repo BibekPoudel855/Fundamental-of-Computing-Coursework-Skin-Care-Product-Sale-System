@@ -106,9 +106,7 @@ def sell_products(products) :
             print(f"❌ Something went wrong: {e}. Please try again.")
             continue
     if cart:
+        # after each sale we update products file
+        write_products_to_file(products)
         # if cart is not empty then we call generate_invoice function
         generate_invoice(cart, customer_name, "sale")
-        # we call this method from here because if cart is not it means we have sold products 
-        write_products_to_file(products)
-
-

@@ -78,7 +78,7 @@ def restock_products(products) :
             print("❌ Something went wrong.")
             continue
     if restocked_item:
-         # writing the updated products to file
+        # writing the updated products to file
         write_products_to_file(products)
         generate_invoice(restocked_item, supplier_name,"restock")
         

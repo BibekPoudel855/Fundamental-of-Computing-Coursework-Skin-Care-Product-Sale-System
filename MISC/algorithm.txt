@@ -56,8 +56,8 @@ Step 8 :
     Step 8.9 : If total quantity > stock then
         goto Step 8.3
     Step 8.10 : Update product data in Products list
-    Step 8.11 : Generate sales invoice and save in file
-    Step 8.12 : Update product data in "products.txt" file
+    Step 8.11 : Update product data in "products.txt" file
+    Step 8.12 : Generate sales invoice and save in file
     Step 8.13 : goto Step 8.4
 
 Step 9 :
